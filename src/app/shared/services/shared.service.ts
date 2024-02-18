@@ -1,11 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+
+  private dataSource = new BehaviorSubject<any>(null);
+  currentData = this.dataSource.asObservable();
 
   constructor() { }
 
@@ -22,5 +25,9 @@ export class SharedService {
     }
     
     return throwError(errorMessage);
+  }
+
+  updateData(data: any) {
+    this.dataSource.next(data);
   }
 }

@@ -13,9 +13,9 @@ export class ProgramacionService {
 
   constructor(private http: HttpClient,private sharedService:SharedService) { }
 
-  getAll(): Observable<any> {
+  getAll(date:string): Observable<any> {
 
-    return this.http.get(`${this.appUrl}programacion/2/0/0/0/0/20231216`).pipe(
+    return this.http.get(`${this.appUrl}programacion/2/0/0/0/0/${date}`).pipe(
       catchError(this.sharedService.handleErrorResponse)
     );
   }
