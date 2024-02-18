@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class CalendarComponent {
 
   calendars: calendar[] = [];
-  dateCurrent:string = '';
+  dateCurrent:number = 0;
 
   constructor(
     private calendarService: CalendarService,
@@ -26,7 +26,7 @@ export class CalendarComponent {
     this.calendarService.getAll().subscribe(
       response => {
         this.calendars = response;
-        this.dateCurrent = this.calendars[0].fecha;
+        this.dateCurrent = this.calendars[0].id;
         this.sendDataToGameComponent(this.calendars[0]);
       },
       error => {
@@ -36,6 +36,7 @@ export class CalendarComponent {
   }
 
   sendDataToGameComponent(data: any) {
+    this.dateCurrent = data.id;
     this.sharedService.updateData(data);
   }
 }

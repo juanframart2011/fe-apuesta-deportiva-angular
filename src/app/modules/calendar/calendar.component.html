@@ -1,5 +1,5 @@
 <div class="row">
     <div class="col-md-12">
-        <button *ngFor="let calendar of calendars" class="btn btn-primary" (click)="sendDataToGameComponent(calendar)">{{ calendar.fechaTexto }}</button>
+        <button *ngFor="let calendar of calendars" class="btn" [ngClass]="{'btn-primary': calendar.id!=dateCurrent, 'btn-success': calendar.id==dateCurrent}" (click)="sendDataToGameComponent(calendar)">{{ calendar.fechaTexto }}</button>
     </div>
 </div>
