@@ -27,7 +27,7 @@ export class CalendarComponent {
       response => {
         this.calendars = response;
         this.dateCurrent = this.calendars[0].fecha;
-        this.sendDataToGameComponent(this.dateCurrent);
+        this.sendDataToGameComponent(this.calendars[0]);
       },
       error => {
         console.warn( '_list() => ', error );

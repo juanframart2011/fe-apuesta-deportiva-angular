@@ -11,6 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class GameComponent {
   
   games: Game[] = [];
+  loadingGame:boolean = true;
 
   constructor(private programacionService: ProgramacionService,private sharedService:SharedService) { }
 
@@ -18,8 +19,9 @@ export class GameComponent {
     this.sharedService.currentData.subscribe(data => {
       
       if(data){
-        console.info( "data => ", data );
-        this._list(data);
+        this.games = [];
+        this.loadingGame = true;
+        this._list(data.fecha);
       }
     });
   }
@@ -28,6 +30,7 @@ export class GameComponent {
     this.programacionService.getAll(date).subscribe(
       response => {
         this.games = response;
+        this.loadingGame = false;
       },
       error => {
         console.warn( '_list() => ', error );

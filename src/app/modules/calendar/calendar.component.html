@@ -1,1 +1,5 @@
-<p>calendar works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <button *ngFor="let calendar of calendars" class="btn btn-primary" (click)="sendDataToGameComponent(calendar)">{{ calendar.fechaTexto }}</button>
+    </div>
+</div>

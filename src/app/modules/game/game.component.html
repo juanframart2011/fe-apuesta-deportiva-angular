@@ -1,1 +1,28 @@
-<p>game works!</p>
+<div class="row text-center" *ngIf="loadingGame">
+    <div class="col-md-12 text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        Cargando Juegos
+    </div>
+</div>
+<div class="row" *ngIf="!loadingGame">
+    <div class="col-md-4" *ngFor="let game of games">
+        <div class="card">
+            <div class="row text-center">
+                <div class="col-md-6 text-center">
+                    <img [src]="game.rutaLogoLocal" class="card-img-top" alt="{{ game.nombreLocal }}"><br>
+                    {{ game.nombreLocal }}
+                </div>
+                <div class="col-md-6 text-center">
+                    <img [src]="game.rutaLogoVisita" class="card-img-top" alt="{{ game.nombreVisita }}"><br>
+                    {{ game.nombreVisita }}
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">Estadio: <b>{{ game.nombreEstadio }}</b></h5>
+                <p class="card-text">{{ game.descripcionEstado }}</p>
+            </div>
+        </div>
+    </div>
+</div>
